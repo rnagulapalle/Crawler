@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project crawler with Jar-in-Jar Loader">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <target name="create_run_jar">
+        <jar destfile="/Users/julius/Work/Projects/crawler/build/crawler.jar">
+            <manifest>
+                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
+                <attribute name="Rsrc-Main-Class" value="com.seporaitis.crawler.Crawler"/>
+                <attribute name="Class-Path" value="."/>
+                <attribute name="Rsrc-Class-Path" value="./ commons-codec-1.4.jar commons-logging-1.1.1.jar protobuf-java-2.4.1.jar httpclient-4.1.1.jar httpclient-cache-4.1.1.jar httpcore-4.1.jar httpmime-4.1.1.jar jsoup-1.6.1.jar aopalliance.jar guice-3.0.jar guice-assistedinject-3.0.jar guice-grapher-3.0.jar guice-jmx-3.0.jar guice-jndi-3.0.jar guice-multibindings-3.0.jar guice-persist-3.0.jar guice-servlet-3.0.jar guice-spring-3.0.jar guice-struts2-plugin-3.0.jar guice-throwingproviders-3.0.jar javax.inject.jar jedis-2.0.0.jar commons-pool-1.5.6-javadoc.jar commons-pool-1.5.6-sources.jar commons-pool-1.5.6.jar commons-collections-3.2.1-javadoc.jar commons-collections-3.2.1-sources.jar commons-collections-3.2.1.jar"/>
+            </manifest>
+            <zipfileset src="jar-in-jar-loader.zip"/>
+            <fileset dir="/Users/julius/Work/Projects/crawler/bin"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib" includes="commons-codec-1.4.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib" includes="commons-logging-1.1.1.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/protobuf-2.4.1" includes="protobuf-java-2.4.1.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/httpcomponents-4.1" includes="httpclient-4.1.1.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/httpcomponents-4.1" includes="httpclient-cache-4.1.1.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/httpcomponents-4.1" includes="httpcore-4.1.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/httpcomponents-4.1" includes="httpmime-4.1.1.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/jsoup-1.6.1" includes="jsoup-1.6.1.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/guice-3.0" includes="aopalliance.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/guice-3.0" includes="guice-3.0.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/guice-3.0" includes="guice-assistedinject-3.0.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/guice-3.0" includes="guice-grapher-3.0.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/guice-3.0" includes="guice-jmx-3.0.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/guice-3.0" includes="guice-jndi-3.0.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/guice-3.0" includes="guice-multibindings-3.0.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/guice-3.0" includes="guice-persist-3.0.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/guice-3.0" includes="guice-servlet-3.0.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/guice-3.0" includes="guice-spring-3.0.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/guice-3.0" includes="guice-struts2-plugin-3.0.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/guice-3.0" includes="guice-throwingproviders-3.0.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/guice-3.0" includes="javax.inject.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/jedis-2.0.0" includes="jedis-2.0.0.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/commons-pool-1.5.6" includes="commons-pool-1.5.6-javadoc.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/commons-pool-1.5.6" includes="commons-pool-1.5.6-sources.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/commons-pool-1.5.6" includes="commons-pool-1.5.6.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/commons-collections-3.2.1" includes="commons-collections-3.2.1-javadoc.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/commons-collections-3.2.1" includes="commons-collections-3.2.1-sources.jar"/>
+            <zipfileset dir="/Users/julius/Work/Projects/crawler/lib/commons-collections-3.2.1" includes="commons-collections-3.2.1.jar"/>
+        </jar>
+    </target>
+</project>
