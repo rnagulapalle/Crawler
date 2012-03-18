@@ -1,29 +1,22 @@
 package com.seporaitis.crawler;
 
+import com.seporaitis.crawler.fetch.HttpFetcher;
+import com.seporaitis.crawler.protobuf.BundleProtos.Bundle;
+import com.seporaitis.crawler.protobuf.BundleProtos.Document;
+import com.seporaitis.crawler.queue.RedisUriQueue;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Date;
 import java.util.Properties;
-
-import javax.swing.event.DocumentListener;
-
-import org.apache.commons.collections.functors.IfClosure;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
-
-import com.seporaitis.crawler.fetch.HttpFetcher;
-import com.seporaitis.crawler.protobuf.BundleProtos.Bundle;
-import com.seporaitis.crawler.protobuf.BundleProtos.Document;
-import com.seporaitis.crawler.queue.RedisUriQueue;
 
 public class Crawler {
     

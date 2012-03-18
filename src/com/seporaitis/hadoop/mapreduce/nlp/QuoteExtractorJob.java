@@ -1,46 +1,50 @@
-package com.seporaitis.hadoop.mapreduce;
+/*
+ * @author Julius Šėporaitis <julius@seporaitis.net>
+ */
+package com.seporaitis.hadoop.mapreduce.nlp;
 
+import com.seporaitis.hadoop.helpers.ModelWritable;
 import com.seporaitis.hadoop.mapreduce.lib.input.BundleInputFormat;
 import java.io.IOException;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
-public class ExampleNgramCounter {
-
+/**
+ * To launch locally, use:
+ * 
+ * java -cp dist/crawler.jar:dist/lib/* -Xmx2048m com.seporaitis.hadoop.mapreduce.nlp.QuoteExtractorJob
+ *
+ * @author Julius Šėporaitis <julius@seporaitis.net>
+ */
+public class QuoteExtractorJob {
+    
     public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
         Configuration conf = new Configuration();
         GenericOptionsParser options = new GenericOptionsParser(conf, args);
         String[] otherArgs = options.getRemainingArgs();
         
-        if(otherArgs.length == 0) {
-            System.out.println("Missing argument: ngramCount.");
-            System.exit(1);
-        }
-        
         conf.set("mapred.input.pathFilter.glob", "15min_lt.*");
-        //conf.set("mapred.job.tracker", "local");
-        //conf.set("fs.default.name", "file:///");
         
-        conf.setInt("com.seporaitis.ngramCount", Integer.parseInt(otherArgs[0]));
+        Job job = new Job(conf, "QuoteExtractorJob");
         
-        Job job = new Job(conf); 
-        job.setJarByClass(ExampleNgramCounter.class);
-        job.setMapperClass(ExampleNgramMap.class);
-        job.setReducerClass(ExampleNgramReduce.class);
+        job.setJarByClass(QuoteExtractorJob.class);
+        job.setMapOutputValueClass(ModelWritable.class);
+        job.setMapperClass(QuoteMapper.class);
+        job.setReducerClass(QuoteReducer.class);
+        
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(LongWritable.class);
+        job.setOutputValueClass(Text.class);
         job.setInputFormatClass(BundleInputFormat.class);
         
         FileInputFormat.addInputPath(job, new Path("input"));
         FileOutputFormat.setOutputPath(job, new Path("output"));
         
-        System.exit(job.waitForCompletion(true) ? 0 : 1);
+        System.exit(job.waitForCompletion(true) ? 1 : 0);
     }
     
 }
