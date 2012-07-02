@@ -1,3 +1,0 @@
-domain = www.foo.com
-bundleSize = 10
-outputFile = /tmp/crawl
