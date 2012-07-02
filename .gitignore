@@ -1,0 +1,17 @@
+bin
+build/*
+documents
+output*
+.DS_Store
+.classpath
+.settings
+counter.out
+crawler.out
+counter.sh
+crawler.properties
+
+/nbproject/private/
+/dist/
+input
+output
+target
