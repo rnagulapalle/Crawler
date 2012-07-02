@@ -4,11 +4,14 @@
  */
 package com.seporaitis.hadoop.mapreduce.nlp;
 
+import com.hp.hpl.jena.datatypes.RDFDatatype;
+import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.vocabulary.DCTerms;
 import com.hp.hpl.jena.vocabulary.RDF;
+import com.hp.hpl.jena.vocabulary.XSD;
 import com.seporaitis.crawler.protobuf.BundleProtos;
 import com.seporaitis.hadoop.helpers.DocumentWritable;
 import com.seporaitis.hadoop.helpers.ModelWritable;
@@ -175,7 +178,7 @@ public class QuoteMapper extends Mapper<Text, DocumentWritable, Text, ModelWrita
                         .addProperty(DCTerms.bibliographicCitation, citation)
                         .addProperty(DCTerms.title, title)
                         .addProperty(DCTerms.publisher, model.createResource("http://" + document.getDomain() + "/"))
-                        .addProperty(DCTerms.issued, dateTime);
+                        .addLiteral(DCTerms.issued, model.createTypedLiteral(dateTime, XSD.dateTime.getURI().toString()));
                 
                 Resource quoteResource = model.createResource("http://local.quote.lt/citata/" + uuid)
                         .addProperty(RDF.type, SIOC.POST)
